@@ -1,26 +1,22 @@
 import * as Hapi from 'hapi';
+import blipp from 'blipp';
+import uf_routes from './api/uf/uf-routes';
 
 const server = new Hapi.Server({
   port: 1337,
   host: 'localhost'
 });
 
-const init = () => {
-  server.start();
-  console.log(`server running at: ${server.info.uri}`);
+const start = async () => {
+  try {
+    await server.register(blipp);
+    await server.register(uf_routes);
+    await server.start();
+    console.log(`server running at: ${server.info.uri}`);
+  } catch (e) {
+    console.error(e)
+    process.exit(1)
+  }
 };
 
-process.on('unhandledRejection', (err) => {
-  console.log(err);
-  process.exit(1);
-});
-
-server.route({
-  method: 'GET',
-  path: '/',
-  handler: (request, reply) => {
-    return reply.response(`{message: hello world }`).code(200);
-  }
-});
-
-init();
+start();
