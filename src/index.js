@@ -1,7 +1,6 @@
 import * as Hapi from 'hapi';
-import Uf from './uf';
 
-const server: Hapi.Server = new Hapi.Server({
+const server = new Hapi.Server({
   port: 1337,
   host: 'localhost'
 });
@@ -19,12 +18,8 @@ process.on('unhandledRejection', (err) => {
 server.route({
   method: 'GET',
   path: '/',
-  handler: (request: Hapi.Request, reply: any) => {
-    let uf = new Uf();
-    uf.id = 1;
-    uf.description = 'sao paulo';
-    
-    return reply.response(uf).code(200);
+  handler: (request, reply) => {
+    return reply.response(`{message: hello world }`).code(200);
   }
 });
 

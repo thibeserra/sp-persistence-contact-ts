@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d dist",
-    "start:teste": "npm run build && nodemon dist/index.js",
-    "start": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile\"",
+    "start": "npm run build && nodemon dist/index.js",
+    "start:es": "./node_modules/nodemon/bin/nodemon.js",
+    "start:ts": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile\"",
     "serve": "node dist/index.js",
     "test": "mocha --require babel-register",
     "compile": "tsc --outDir ./build --module commonjs ./src/*.ts && node ./build/index.js"
@@ -19,8 +20,6 @@
     "hapi": "^18.1.0"
   },
   "devDependencies": {
-    "@types/hapi": "^18.0.0",
-    "@types/node": "^10.12.21",
     "babel-register": "^6.26.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9"
