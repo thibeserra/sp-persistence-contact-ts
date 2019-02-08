@@ -26,4 +26,4 @@ class UfController {
     }
   }
 }
-export default UfController;
+export default new UfController();

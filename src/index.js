@@ -1,6 +1,5 @@
 import * as Hapi from 'hapi';
-import blipp from 'blipp';
-import uf_routes from './api/uf/uf-routes';
+import routes from './routes-register';
 
 const server = new Hapi.Server({
   port: 1337,
@@ -9,9 +8,8 @@ const server = new Hapi.Server({
 
 const start = async () => {
   try {
-    await server.register(blipp);
-    await server.register(uf_routes);
-    await server.start();
+    await server.register(routes);
+    server.start();
     console.log(`server running at: ${server.info.uri}`);
   } catch (e) {
     console.error(e)
