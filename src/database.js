@@ -6,7 +6,8 @@ const sapriConnection = new Sequelize('sapri', 'root', 'labsprog', {
     max: 5,
     min: 1,
     idle: 10000
-  }
+  },
+  operatorsAliases: false
 })
 
 const sapriDB = function () {
